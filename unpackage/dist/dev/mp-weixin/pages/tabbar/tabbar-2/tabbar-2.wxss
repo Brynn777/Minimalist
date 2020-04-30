@@ -1,0 +1,20 @@
+
+.content {
+	text-align: center;
+	height: 400rpx;
+	margin-top: 10rpx;
+}
+.topText {
+	float: left;
+	line-height: 30px;
+	position:relative;
+	left: 10px
+}
+.addIcon {
+	position: absolute;
+	right: 10px
+}
+.stepProgress {
+	padding-top:30px
+}
+

@@ -1,0 +1,18 @@
+
+.content {
+	text-align: center;
+	height: 400rpx;
+	margin-top: 50rpx;
+}
+.loginImg{
+	border: 1px solid #d0d0d6;
+	height:144rpx;
+	line-height:144rpx;
+	width:144rpx;
+	margin:auto;
+	border-radius:50%;
+	color:#8F8F94;
+	background: #ebebeb;
+	font-size:24rpx
+}
+

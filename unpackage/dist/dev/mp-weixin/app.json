@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/tabbar/tabbar-1/tabbar-1",
+    "pages/tabbar/tabbar-2/tabbar-2",
+    "pages/tabbar/tabbar-3/tabbar-3",
+    "pages/TextInput/selectPage/selectPage",
+    "pages/TextInput/stepOne/stepOne",
+    "pages/TextInput/previewPPT/previewPPT"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "极简主义",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "borderStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "color": "#dbdbdb",
+    "selectedColor": "#515151",
+    "list": [
+      {
+        "pagePath": "pages/tabbar/tabbar-1/tabbar-1",
+        "iconPath": "static/img/tabbar/unhome.png",
+        "selectedIconPath": "static/img/tabbar/home.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/tabbar/tabbar-2/tabbar-2",
+        "iconPath": "static/img/tabbar/undo.png",
+        "selectedIconPath": "static/img/tabbar/do.png",
+        "text": "制作"
+      },
+      {
+        "pagePath": "pages/tabbar/tabbar-3/tabbar-3",
+        "iconPath": "static/img/tabbar/unproduct.png",
+        "selectedIconPath": "static/img/tabbar/product.png",
+        "text": "产品"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

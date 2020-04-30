@@ -1,0 +1,37 @@
+
+.box {position: relative;height: 55px;padding: 0;margin: 0;width: 90%;display: block;}
+.box .label {position: absolute;left: 0;top: 24px;font-size: 16px;color: #999;-webkit-transition-duration: .2s;transition-duration: .2s;}
+.box .label.labelfocus {top: 5px;-webkit-transition-duration: .2s;transition-duration: .2s;font-size: 10px;color: #aaa;}
+.box .inputitem {height: 26px; line-height: 26px;padding: 20px 0 10px 0; -webkit-transition-duration: .2s; transition-duration: .2s;font-size:16px;color: #333;position: absolute;top: 0;left: 0;width: 100%;}
+.box .inputitem:disabled {color: #333;-webkit-text-fill-color:#333;}
+.box .label.labelfocus + .inputitem {padding: 28px 0 0 0; -webkit-transition-duration: .1s; transition-duration: .1s;color: #333;}
+.box .inval {color: #333;}
+.box input:disabled {-webkit-text-fill-color: #333!important;-webkit-opacity: 1!important;color: #333!important;}
+
+
+.title {
+	text-align: center;
+}
+.inputBox{
+	margin: 0rpx 40rpx;
+	position: relative;
+}
+.inputContent {
+	height:50px
+}
+.divLine{
+ background: #8a8c86;
+ width: 100%;
+ height: 1rpx;
+}
+.doneButton {
+	position:absolute;
+	bottom:0rpx;
+	width:100%;
+}
+.addIcon {
+	float:right;
+	position:relative;
+	top:10px;
+}
+
