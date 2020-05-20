@@ -192,8 +192,8 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26); //
 //
 //
 //
-var _default = { data: function data() {return { userInfo: { name: "", avatarUrl: "" }, background: ['color1', 'color2', 'color3'], indicatorDots: true, autoplay: true, interval: 2000, duration: 500 };}, onLoad: function onLoad() {this.getUserInfo();this.gotologin();}, methods: { getUserInfo: function getUserInfo() {var self = this;wx.getUserInfo({ success: function success(res) {console.log("获取用户信息！！");console.log(res);self.userInfo.name = res.userInfo.nickName;self.userInfo.avatarUrl = res.userInfo.avatarUrl;} });
-
+var _default = { data: function data() {return { userInfo: { name: "", avatarUrl: "" }, background: ['color1', 'color2', 'color3'], indicatorDots: true, autoplay: true, interval: 2000, duration: 500 };}, onLoad: function onLoad() {// this.getUserInfo();
+    this.gotologin();}, methods: { getUserInfo: function getUserInfo() {var self = this;wx.getUserInfo({ success: function success(res) {console.log("获取用户信息！！");console.log(res);self.userInfo.name = res.userInfo.nickName;self.userInfo.avatarUrl = res.userInfo.avatarUrl;} });
     },
     gotologin: function gotologin() {
       var self = this;
@@ -205,7 +205,9 @@ var _default = { data: function data() {return { userInfo: { name: "", avatarUrl
           console.log("微信开放接口api");
           console.log(res);
           if (res.code) {
+            console.log("开始在用户服务器上登录");
             self.$store.state.userInfo.code = res.code;
+            console.log(res);
             //用获取的临时登录凭证code在业务服务器上换取openID
             // self.$http.post(self.$store.state.url.LOGIN,{code:res.code})
             (0, _utils.login)({ code: res.code }).then(function (res) {

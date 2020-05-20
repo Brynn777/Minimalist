@@ -1,1 +1,1 @@
-<view><text>测试</text></view>
+<view><view class="stepBar"><uni-steps vue-id="1" options="{{[{title:'选择模板'},{title:'输入文本'},{title:'生成导出'}]}}" active="{{2}}" bind:__l="__l"></uni-steps></view><view class="forStepBar"></view><block wx:for="{{picUrl}}" wx:for-item="value" wx:for-index="key" wx:key="key"><view class="previewPic"><image src="{{picUrl[key]}}" mode="aspectFit"></image></view></block><view class="forButton"></view><button class="doneButton" type="primary" data-event-opts="{{[['tap',[['downloadPPT',['$event']]]]]}}" bindtap="__e">导 出</button></view>

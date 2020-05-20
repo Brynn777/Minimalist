@@ -9,15 +9,36 @@
 .box input:disabled {-webkit-text-fill-color: #333!important;-webkit-opacity: 1!important;color: #333!important;}
 
 
-.title {
-	text-align: center;
+page{
+		background-color: #f8f8f8;
 }
 .inputBox{
-	margin: 0rpx 40rpx;
-	position: relative;
+		margin: 25rpx 0rpx;
+}
+.inputTip{
+		padding:0rpx 40rpx
+}
+.addIcon {
+		float:right;
+		position:relative;
+		top:0rpx;
 }
 .inputContent {
-	height:50px
+		background-color: #ffffff;
+		padding:10rpx 40rpx 4rpx 40rpx;
+		margin: 10rpx 0rpx
+}
+.stepBar{
+	position: fixed;
+	width:100%;
+	z-index:2;
+	background: #f8f8f8;
+}
+.forStepBar{
+	height:60rpx;
+}
+.title {
+	text-align: center;
 }
 .divLine{
  background: #8a8c86;
@@ -25,13 +46,11 @@
  height: 1rpx;
 }
 .doneButton {
-	position:absolute;
+	position:fixed;
 	bottom:0rpx;
 	width:100%;
+	z-index:2;
 }
-.addIcon {
-	float:right;
-	position:relative;
-	top:10px;
-}
+
+
 

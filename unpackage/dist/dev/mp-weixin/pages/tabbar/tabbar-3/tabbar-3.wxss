@@ -2,6 +2,38 @@
 .content {
 	text-align: center;
 	height: 400rpx;
-	margin-top: 200rpx;
+}
+.userinfo {  
+  position: relative;  
+  width: 750rpx;  
+  height: 320rpx;  
+  color: #fff;  
+  display: -webkit-box;  
+  display: -webkit-flex;  
+  display: flex;  
+  -webkit-box-orient: vertical;  
+  -webkit-box-direction: normal;  
+  -webkit-flex-direction: column;  
+          flex-direction: column;  
+  -webkit-box-align: center;  
+  -webkit-align-items: center;  
+          align-items: center; 
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  background-color: #f7f7f7;
+}
+.userinfo-avatar {  
+  overflow:hidden; 
+  display: block;  
+  width: 160rpx;  
+  height: 160rpx;  
+  margin: 20rpx;  
+  margin-top: 50rpx;  
+  border-radius: 50%;  
+  border: 2px solid #fff;  
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+.userinfo-name {
+	color: #000000;
+	text-align: center;
 }
 

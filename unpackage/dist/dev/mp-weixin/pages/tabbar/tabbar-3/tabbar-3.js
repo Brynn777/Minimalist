@@ -133,7 +133,19 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -143,13 +155,33 @@ var _default =
 {
   data: function data() {
     return {
-      title: 'Hello' };
+      savedFileList: [] };
 
   },
   onLoad: function onLoad() {
-
+    this.getSavedFileList();
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    getSavedFileList: function getSavedFileList() {
+      var self = this;
+      uni.getSavedFileList({
+        success: function success(res) {
+          console.log("文件列表");
+          console.log(res);
+          res.fileList.forEach(function (item) {
+            self.savedFileList.push(item);
+          });
+        } });
+
+    },
+    openDoc: function openDoc() {
+      wx.openDocument({
+        filePath: this.savedFileList[0].filePath,
+        fileType: 'pptx,',
+        showMenu: true });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

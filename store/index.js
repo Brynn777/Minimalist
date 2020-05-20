@@ -3,60 +3,13 @@ import Vue from 'vue'
 Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
-		cover:{
-			title: {
-				tip:'主标题',
-				value: ''
-			},
-			subtitle: {
-				tip:'副标题',
-				value: '测试'
-			},
-			reporterName: {
-				tip:'汇报人',
-				value: '测试'
-			},
-			reportTime: {
-				tip:'时间',
-				value: '测试'
-			},
-		},
-		picWithText:{
-			title:{
-				tip: '概括',
-				value: '',
-			},
-			paragraph: {
-				tip: '详细内容',
-				value:''
-			},
-			pictureUrls: {
-				tip: '图片url',
-				value: []
-			},
-		}, 
-		ending: {
-			title: {
-				tip:'结束语',
-				value: ''
-			}
-		},
-		catalog:{
-			titles:{
-				tip:'分目录',
-				value:['','']
-			}
-		},
-		text: {
-			title:{
-				tip:'标题',
-				value:''
-			},
-			paragraph:{
-				tip:'正文',
-				value:''
-			}
-		},
+		PPT:[
+			{pageType:'cover'},
+			{pageType:'catalog'},
+			// {pageType:'text'},
+			// {pageType:'picWithText'},
+			{pageType:'ending'}
+		],
 		userInfo:{
 			userId: {
 				tip: '用户在业务服务器上唯一标识',
@@ -72,7 +25,7 @@ export default new Vuex.Store({
 				tip: '本次使用的模板id',
 				value: ''
 			},
-			filePath: {
+			filePath  : {
 				tip: '本次生成的文件路径',
 				value: ''
 			},
@@ -87,11 +40,39 @@ export default new Vuex.Store({
 		},
 	},
 	mutations: {
+		// 将单个数据项添加
 		changeItem(state, data) {
 			state[data.page][data.key].value = data.value;
 		},
-		changeArray(state,data) {
-			Vue.set(state[data.page][data.key].value, data.index, data.value)
+		addArray(state) {
+			Vue.set(state.PPT, state.PPT.length, {})
+		},
+		// 添加一个一般页面缓存
+		changePPTContent(state,data) {
+			Vue.set(state.PPT, data.index, data.content);
+		},
+		addContentPage(state,data) {
+			state.PPT.splice(data.index,0,{
+				pageType:data.pageType
+			})
+		},
+		// 在填写目录页后调用,将本次的目录分成多个过渡页逐一缓存
+		addTransitionPage(state,data) {
+			// 清除之前的目录(过渡页)
+			for(let i = state.PPT.length-1;i>=0;i--) {
+				if(state.PPT[i].pageType=='transition')
+				state.PPT.splice(i,1)
+			}
+			// 逐一插入过渡页缓存
+			for(let it in data) {
+				state.PPT.splice(2+parseInt(it),0,{
+					pageType:'transition',
+					title: {
+						tip: '标题',
+						value: data[it]
+					},
+				})
+			}
 		}
 	}
 })

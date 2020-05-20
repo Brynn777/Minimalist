@@ -1,9 +1,15 @@
 <template>
 	<view class="content">
-		<text class="topText">一键生成专业级PPT</text>
-		<uni-icons class="addIcon" type="plus" size="30" @tap="routerLink"></uni-icons>
-		<view class="stepProgress">
-		<uni-steps :options="[{title:'StepOne',desc:'输入文本'},{title:'StepTwo',desc:'选择模板'},{title:'StepThree',desc:'生成导出'}]" direction="column" :active="2"></uni-steps>	
+		
+		<view class="stepBar">
+		<uni-steps :options="[{title: '选择模板'}, {title: '输入文本'}, {title: '生成导出'}]" :active="0"></uni-steps>	
+		</view>
+		<view class="forStepBar"></view>
+		<view class="modulePic">
+			<image src="../../../static/img/moduleOne.jpg" mode="aspectFit" @tap="routerLink"></image>
+		</view>
+		<view class="modulePic">
+			<image src="../../../static/img/moduleOne.jpg" mode="aspectFit" @tap="routerLink"></image>
 		</view>
 	</view>
 </template>
@@ -59,7 +65,16 @@
 		position: absolute;
 		right: 10px
 	}
-	.stepProgress {
-		padding-top:30px
-	}
+.stepBar{
+	position: fixed;
+	width:100%;
+	z-index:2;
+	background:white;
+}
+.forStepBar{
+	height:60rpx;
+}
+.modulePic{
+	margin-bottom: 10rpx;
+}
 </style>

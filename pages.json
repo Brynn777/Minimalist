@@ -5,21 +5,19 @@
 			"path": "pages/tabbar/tabbar-1/tabbar-1"
 		},
 		{
-			"path": "pages/tabbar/tabbar-2/tabbar-2",
-			"style": {}
+			"path": "pages/tabbar/tabbar-2/tabbar-2"
 		},
 		{
 			"path": "pages/tabbar/tabbar-3/tabbar-3",
-			"style": {}
-		},
-		
-		{
-			"path": "pages/TextInput/selectPage/selectPage",
-			"style": {}
+			"style": {
+			            "navigationBarTitleText": "个人中心"
+			        }
 		},
 		{
-			"path": "pages/TextInput/stepOne/stepOne",
-			"style": {}
+			"path": "pages/TextInput/selectPage/selectPage"
+		},
+		{
+			"path": "pages/TextInput/input/input"
 		},
 		{
 			"path": "pages/TextInput/previewPPT/previewPPT",

@@ -3,15 +3,15 @@
 		<view>
 			<view class="page-section swiper">
 				<view class="page-section-spacing">
-					<swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="100">
+					<swiper class="swiper" autoplay="true" interval="3000" duration="100">
 						<swiper-item>
-							<image src="../../../static/img/slideOne.png" mode="widthFix" ></image>
+							<image src="../../../static/img/slideOne.jpg" mode="widthFix" style="width: 100%;" ></image>
 						</swiper-item>
 						<swiper-item>
-							<image src="../../../static/img/slideTwo.png" mode="widthFix" ></image>
+							<image src="../../../static/img/slideTwo.jpg" mode="widthFix" style="width: 100%;"></image>
 						</swiper-item>
 						<swiper-item>
-							<image src="../../../static/img/slideThree.png" mode="widthFix" ></image>
+							<image src="../../../static/img/slideThree.jpg" mode="widthFix" style="width: 100%;"></image>
 						</swiper-item>
 					</swiper>
 				</view>
@@ -44,7 +44,7 @@ export default {
 		};
 	},
 	onLoad() {
-		this.getUserInfo();
+		// this.getUserInfo();
 		this.gotologin();
 	},
 	methods: {
@@ -70,7 +70,9 @@ export default {
 				console.log("微信开放接口api")
 				console.log(res);
 			    if (res.code) {
+					console.log("开始在用户服务器上登录")
 					self.$store.state.userInfo.code = res.code;
+					console.log(res)
 			        //用获取的临时登录凭证code在业务服务器上换取openID
 					// self.$http.post(self.$store.state.url.LOGIN,{code:res.code})
 					login({code:res.code}).then(res=>{
@@ -116,5 +118,9 @@ export default {
 	color:#8F8F94;
 	background: #ebebeb;
 	font-size:24upx
+}
+.swiper{
+	display:block;
+	height:400rpx
 }
 </style>

@@ -1,9 +1,22 @@
 <template>
 	<view>
-		<uni-steps :options="[{title: '输入文本'}, {title: '选择模板'}, {title: '生成导出'}]" :active="0"></uni-steps>
+		<view class="stepBar">
+			<uni-steps :options="[{title: '选择模板'}, {title: '输入文本'}, {title: '生成导出'}]" :active="1"></uni-steps>
+		</view>
+		<view class="forStepBar">
+		</view>
 		<uni-list>
-			<view v-for="(value, key) in pageType" :key="key" @click="routerLink(key)">
-				<uni-list-item :title="value" note="描述信息"></uni-list-item>
+			<view v-for="(obj, index) in PPT" :key="index" @click="routerLink(obj.pageType,index)">
+				<uni-list-item :title="obj.pageType | enToCh" :note="obj | getMainInfo"></uni-list-item>
+				<view v-if="obj.pageType=='transition'">
+					<view class="contentButton"><uni-icons type="email" size="30" @tap.stop="addOnePage('text',index)"></uni-icons></view>
+					<view class="contentButton"><uni-icons type="image" size="25" @tap.stop="addOnePage('picWithText',index)"></uni-icons></view>
+					<view class="contentButton"><uni-icons type="compose" size="30" @tap.stop="addOnePage('table',index)"></uni-icons></view>
+					<view class="contentButton buttonText" @tap.stop="addOnePage('text',index)">文字页</view>
+					<view class="contentButton buttonText" @tap.stop="addOnePage('picWithText',index)">图文页</view>
+					<view class="contentButton buttonText" @tap.stop="addOnePage('table',index)">图表页</view>
+				</view>
+				
 			</view>
 		</uni-list>
 	</view>
@@ -17,30 +30,47 @@
 	export default {
 		data() {
 			return {
-				pageType:{
-					cover:'封面页',
-					catalog:'目录页',
-					// trans:'过渡页',
-					text: '正文页',
-					picWithText:'图文页', 
-					ending: '结束页'
-				}
-				
+			}
+		},
+		computed:{
+			PPT(){
+				return this.$store.state.PPT
 			}
 		},
 		methods: {
-			routerLink(pageType) {
-				console.log("传入")
-				console.log(pageType)
+			routerLink(type,index) {
 				uni.navigateTo({
-				  url: '/pages/TextInput/stepOne/stepOne?pageType='+pageType,
+				  url: '/pages/TextInput/input/input?pageType='+type+'&pageIndex='+index,
 				 })
 			},
+			addOnePage(type,index) {
+				console.log(type+index)
+				this.$store.commit('addContentPage',{
+					pageType:type,
+					index:index+1
+				})
+			}
 		},
 		components: {uniSteps,uniList,uniListItem,uniIcons}
 	}
 </script>
 
 <style>
-
+.stepBar{
+	position: fixed;
+	width:100%;
+	z-index:2;
+	background:white;
+}
+.forStepBar{
+	height:60rpx;
+}
+.contentButton{
+	width:33.3%;
+	display: inline-block;
+	text-align: center;
+}
+.buttonText{
+	font-size:24rpx;
+}
 </style>

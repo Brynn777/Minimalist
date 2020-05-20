@@ -1,0 +1,23 @@
+
+.doneButton {
+	position:fixed;
+	bottom:0rpx;
+	width:100%;
+	z-index:2;
+}
+.forButton{
+	height:90rpx;
+}
+.stepBar{
+	position: fixed;
+	width:100%;
+	z-index:2;
+	background:white;
+}
+.forStepBar{
+	height:60rpx;
+}
+.previewPic{
+	margin-bottom: 10rpx;
+}
+

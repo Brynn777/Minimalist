@@ -18,6 +18,73 @@ _vue.default.prototype.$store = _store.default;
 _vue.default.prototype.$http = _requestConfig.default;
 _App.default.mpType = 'app';
 
+_vue.default.filter('enToCh', function (msg) {
+  if (msg == 'cover')
+  return '封面页';else
+  if (msg == 'catalog')
+  return '目录页';else
+  if (msg == 'transition')
+  return '过渡页';else
+  if (msg == 'text')
+  return '文字页';else
+  if (msg == 'picWithText')
+  return '图文页';else
+  if (msg == 'ending')
+  return '结束页';else
+  if (msg == 'pictureUrls')
+  return '插图';else
+
+  return msg;
+});
+_vue.default.filter('getMainInfo', function (obj) {
+  for (var it in obj) {
+    if (it != 'pageType') {
+      return obj[it].value;
+    }
+  }
+  return '详细信息';
+});
+_vue.default.filter('itemTranslate', function (msg, type) {
+  if (msg == 'title') {
+    if (type == 'cover')
+    return '主标题';else
+    if (type == 'ending')
+    return '结束语';else
+
+    return '标题';
+  } else
+  if (msg == 'subtitle')
+  return '副标题';else
+  if (msg == 'reporterName')
+  return '汇报人';else
+  if (msg == 'reportTime')
+  return '汇报时间';else
+  if (msg == 'paragraph')
+  return '详细内容';else
+
+
+  return msg;
+});
+_vue.default.filter('itemTip', function (msg, type) {
+  if (msg == 'title') {
+    if (type == 'cover')
+    return '请输入主标题';else
+    if (type == 'ending')
+    return '请输入结束语';else
+
+    return '请输入标题';
+  } else
+  if (msg == 'subtitle')
+  return '请输入副标题';else
+  if (msg == 'reporterName')
+  return '请输入汇报人';else
+  if (msg == 'reportTime')
+  return '请输入汇报时间';else
+  if (msg == 'paragraph')
+  return '请输入详细内容';else
+
+  return '请输入目录' + (parseInt(msg) + 1);
+});
 var app = new _vue.default(_objectSpread({},
 _App.default, {
   store: _store.default }));

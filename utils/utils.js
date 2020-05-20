@@ -4,10 +4,13 @@ let url = {
 	LOGIN: baseUrl + 'minimalist/login/wx',
 	PREVIEW: baseUrl + 'onlinePreview?url=',
 	COVER: baseUrl + 'minimalist/ppt/cover/make',
+	TRANSITION: baseUrl + 'minimalist/ppt/transition/make',
 	CATALOG:  baseUrl + 'minimalist/ppt/contents/make',
 	TEXT:  baseUrl + 'minimalist/ppt/text/make',
-	PICWITHT: baseUrl + 'minimalist/ppt/image/make',
-	ENDING: baseUrl + 'minimalist/ppt/end/make'
+	PICWITHTEXT: baseUrl + 'minimalist/ppt/image/make',
+	ENDING: baseUrl + 'minimalist/ppt/end/make',
+	NEWPREVIEW: baseUrl + 'minimalist/ppt/page/filePreview',
+	MOVE: baseUrl + 'minimalist/ppt/page/move'
 }
 let DATA = {
 	baseUrl,url
@@ -22,6 +25,13 @@ function setLocalData(key,value){
 function getLocalData(key) {
 	return uni.getStorageSync(key)
 }
+export function movePPT(id,from,to) {
+	return $http.post(url.MOVE,{
+		fileId:id,
+		formPageNum:from,
+		toPageNum: to
+	})
+}
 export function login(code) {
 	return $http.post(url.LOGIN,code).then((res)=>{
 		if(res.data && res.data.token);
@@ -34,31 +44,12 @@ export function login(code) {
 export function makeCover(data) {
 	return $http.post(url.COVER,data)
 }
+export function newPreview(fileId) {
+	return $http.get(url.NEWPREVIEW,{
+		fileId:fileId
+	})
+}
 export function previewPage(addUrl,data) {
 	return $http.post(url[addUrl.toUpperCase()],data)
-	// .then(res=>{
-	// 	var rawUrl = baseUrl+res.data.filePath;
-	// 	var previewUrl = url.PREVIEW+encodeURIComponent(rawUrl);
-	// 	console.log(previewUrl);
-	// 	console.log("看这里");
-	// 	console.log(res);
-		
-	// 	// $http.get(previewUrl, {},{isFactory:false}).then(res=>{
-	// 	// 	console.log(res);
-	// 	// 	var imgReg = /<img.*?(?:>|\/>)/gi;
-	// 	// 	var srcReg = /data-src=[\'\"]?([^\'\"]*)[\'\"]?/i;
-	// 	// 	var arr = res.data.match(imgReg);
-	// 	// 	console.log("看这里");
-	// 	// 	console.log(arr);
-	// 	// 	for (var i = 0; i < arr.length; i++) {
-	// 	// 	 var src = arr[i].match(srcReg);
-	// 	// 		console.log(src);
-	// 	// 	}
-	// 	// }).catch(err=>{
-	// 	// 	console.log(err);
-	// 	// });
-		
-	// }).catch(err=>{
-	// 	console.log(err)
-	// })
+	
 }

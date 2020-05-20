@@ -4,7 +4,7 @@
     "pages/tabbar/tabbar-2/tabbar-2",
     "pages/tabbar/tabbar-3/tabbar-3",
     "pages/TextInput/selectPage/selectPage",
-    "pages/TextInput/stepOne/stepOne",
+    "pages/TextInput/input/input",
     "pages/TextInput/previewPPT/previewPPT"
   ],
   "subPackages": [],
@@ -41,5 +41,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap48.json"
 }

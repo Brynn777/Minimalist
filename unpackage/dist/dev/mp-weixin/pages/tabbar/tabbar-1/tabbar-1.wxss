@@ -15,4 +15,8 @@
 	background: #ebebeb;
 	font-size:24rpx
 }
+.swiper{
+	display:block;
+	height:400rpx
+}
 

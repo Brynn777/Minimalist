@@ -150,6 +150,7 @@ export default class request {
 
 	//接口请求方法
 	getRequest(ajaxType, options, callback) {
+		
 		//请求前回调
 		if (this.requestStart) {
 			options.method = ajaxType;
@@ -165,6 +166,7 @@ export default class request {
 				return;
 			}
 		}
+		
 		uni.request({
 			url: options.httpUrl,
 			data: options.data,

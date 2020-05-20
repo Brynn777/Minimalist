@@ -1,20 +1,29 @@
 
 .content {
-	text-align: center;
-	height: 400rpx;
-	margin-top: 10rpx;
+		text-align: center;
+		height: 400rpx;
+		margin-top: 10rpx;
 }
 .topText {
-	float: left;
-	line-height: 30px;
-	position:relative;
-	left: 10px
+		float: left;
+		line-height: 30px;
+		position:relative;
+		left: 10px
 }
 .addIcon {
-	position: absolute;
-	right: 10px
+		position: absolute;
+		right: 10px
 }
-.stepProgress {
-	padding-top:30px
+.stepBar{
+	position: fixed;
+	width:100%;
+	z-index:2;
+	background:white;
+}
+.forStepBar{
+	height:60rpx;
+}
+.modulePic{
+	margin-bottom: 10rpx;
 }
 
