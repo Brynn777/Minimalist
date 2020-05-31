@@ -5,7 +5,25 @@
 		</view>
 		<view class="forStepBar">
 		</view>
-		<uni-list>
+		<view class="pageBox">
+			
+			<view class="pageBlock" v-for="(obj, index) in PPT" :key="index" @click="routerLink(obj.pageType,index)">
+				<view class="pageText">
+					<uni-icons type="smallcircle" size="20" color="	#00BFFF"></uni-icons>
+					{{obj.pageType | enToCh}}
+				</view>
+				<image src="../../../static/img/moduleOne.jpg" mode="aspectFit"></image>
+				<view v-if="obj.pageType=='transition'" class="addBlock">
+					<view class="contentButton"><uni-icons type="email" size="25" @tap.stop="addOnePage('text',index)"></uni-icons></view>
+					<view class="contentButton"><uni-icons type="image" size="25" @tap.stop="addOnePage('picWithText',index)"></uni-icons></view>
+					<view class="contentButton"><uni-icons type="compose" size="25" @tap.stop="addOnePage('table',index)"></uni-icons></view>
+					<view class="contentButton buttonText" @tap.stop="addOnePage('text',index)">文字页</view>
+					<view class="contentButton buttonText" @tap.stop="addOnePage('picWithText',index)">图文页</view>
+					<view class="contentButton buttonText" @tap.stop="addOnePage('table',index)">图表页</view>
+				</view>
+			</view>
+		</view>
+		<!-- <uni-list>
 			<view v-for="(obj, index) in PPT" :key="index" @click="routerLink(obj.pageType,index)">
 				<uni-list-item :title="obj.pageType | enToCh" :note="obj | getMainInfo"></uni-list-item>
 				<view v-if="obj.pageType=='transition'">
@@ -16,9 +34,8 @@
 					<view class="contentButton buttonText" @tap.stop="addOnePage('picWithText',index)">图文页</view>
 					<view class="contentButton buttonText" @tap.stop="addOnePage('table',index)">图表页</view>
 				</view>
-				
 			</view>
-		</uni-list>
+		</uni-list> -->
 	</view>
 </template>
 
@@ -56,6 +73,31 @@
 </script>
 
 <style>
+	.pageIcon{
+		color:red;
+	}
+	.pageBox{
+		border-left: 1.5px solid 	#000080;
+		margin: 20px;
+		padding: 0 20px;
+
+	}
+	.pageText{
+		position: absolute;
+		left: -31px;
+		top: -10px;
+		background: #ffffff;
+	}
+	.pageBlock{
+		position:relative;
+	}
+	.addBlock{
+		border: 1px solid red;
+		border-radius: 10px;
+		margin-bottom: 15px;
+		margin-top: -15px;
+
+	}
 .stepBar{
 	position: fixed;
 	width:100%;

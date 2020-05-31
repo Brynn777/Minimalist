@@ -3,6 +3,7 @@ import Vue from 'vue'
 Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
+		// 用户填写的所有数据
 		PPT:[
 			{pageType:'cover'},
 			{pageType:'catalog'},

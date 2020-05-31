@@ -103,12 +103,9 @@ var render = function() {
   var l0 = _vm.__map(_vm.PPT, function(obj, index) {
     var f0 = _vm._f("enToCh")(obj.pageType)
 
-    var f1 = _vm._f("getMainInfo")(obj)
-
     return {
       $orig: _vm.__get_orig(obj),
-      f0: f0,
-      f1: f1
+      f0: f0
     }
   })
 
@@ -153,7 +150,24 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniSteps = function uniSteps() {return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 88));};var uniList = function uniList() {return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 95));};var uniListItem = function uniListItem() {return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 102));};var uniIcons = function uniIcons() {return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 80));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniSteps = function uniSteps() {return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 110));};var uniList = function uniList() {return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 117));};var uniListItem = function uniListItem() {return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 124));};var uniIcons = function uniIcons() {return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 102));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

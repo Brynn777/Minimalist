@@ -11,6 +11,12 @@
 		<view class="modulePic">
 			<image src="../../../static/img/moduleOne.jpg" mode="aspectFit" @tap="routerLink"></image>
 		</view>
+		<view class="modulePic">
+			<image src="../../../static/img/moduleOne.jpg" mode="aspectFit" @tap="routerLink"></image>
+		</view>
+		<view class="modulePic">
+			<image src="../../../static/img/moduleOne.jpg" mode="aspectFit" @tap="routerLink"></image>
+		</view>
 	</view>
 </template>
 
@@ -76,5 +82,12 @@
 }
 .modulePic{
 	margin-bottom: 10rpx;
+	width: 45%;
+	display: inline-block;
+	padding: 2px;
+
+}
+.modulePic > image{
+	height:100px
 }
 </style>

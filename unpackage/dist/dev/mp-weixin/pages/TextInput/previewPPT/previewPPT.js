@@ -166,7 +166,7 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26); //
 //
 //
 //
-var uniSteps = function uniSteps() {return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 88));};var _default = { components: { uniSteps: uniSteps }, data: function data() {return { picUrl: [] };}, methods: { downloadPPT: function downloadPPT() {var self = this;uni.getSavedFileList({ success: function success(res) {console.log("文件列表");console.log(res);res.fileList.forEach(function (item) {
+var uniSteps = function uniSteps() {return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 110));};var _default = { components: { uniSteps: uniSteps }, data: function data() {return { picUrl: [] };}, methods: { downloadPPT: function downloadPPT() {var self = this;uni.getSavedFileList({ success: function success(res) {console.log("文件列表");console.log(res);res.fileList.forEach(function (item) {
             uni.removeSavedFile({
               filePath: item.filePath,
               complete: function complete(res) {

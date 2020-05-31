@@ -224,12 +224,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _content = __webpack_require__(/*! ./content.js */ 62);
 
 var _uniInput = _interopRequireDefault(__webpack_require__(/*! @/components/hnfly-input//uni-input.vue */ 63));
 
 
-var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var uniSteps = function uniSteps() {return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 88));};var uniIcons = function uniIcons() {return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! components/uni-icons/uni-icons.vue */ 80));};var sunUiUpimg = function sunUiUpimg() {return __webpack_require__.e(/*! import() | components/sunui-upimg/sunui-upimg */ "components/sunui-upimg/sunui-upimg").then(__webpack_require__.bind(null, /*! @/components/sunui-upimg/sunui-upimg.vue */ 109));};var _default =
+var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var uniSteps = function uniSteps() {return __webpack_require__.e(/*! import() | components/uni-steps/uni-steps */ "components/uni-steps/uni-steps").then(__webpack_require__.bind(null, /*! @/components/uni-steps/uni-steps.vue */ 110));};var uniIcons = function uniIcons() {return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! components/uni-icons/uni-icons.vue */ 102));};var sunUiUpimg = function sunUiUpimg() {return __webpack_require__.e(/*! import() | components/sunui-upimg/sunui-upimg */ "components/sunui-upimg/sunui-upimg").then(__webpack_require__.bind(null, /*! @/components/sunui-upimg/sunui-upimg.vue */ 131));};var _default =
 {
   data: function data() {
     return {
@@ -358,7 +359,7 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _in
         _this.buttonLoading = true;
         var postData = _this.processPostData();
         var self = _this;
-        (0, _utils.previewPage)(_this.pageType, postData).then(function (res) {
+        (0, _utils.generateOnePage)(_this.pageType, postData).then(function (res) {
           // 根据返回的数据存储到vuex
           _this.$store.commit('changeItem', {
             page: 'productInfo',
@@ -417,7 +418,7 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _in
     geneTransitionPage: function () {var _geneTransitionPage = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(resolve) {var postData, i;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 postData = this.processPostData();
                 i = 0;case 2:if (!(i < postData.titles.length)) {_context2.next = 8;break;}_context2.next = 5;return (
-                  (0, _utils.previewPage)('transition', {
+                  (0, _utils.generateOnePage)('transition', {
                     fileId: postData.fileId,
                     title: postData.titles[i] }));case 5:i++;_context2.next = 2;break;case 8:
 

@@ -1,4 +1,37 @@
 
+.userinfo-avatar {  
+	  overflow: hidden;
+	  display: block;
+	  width: 70rpx;
+	  height: 70rpx;
+	  border-radius: 50%;
+	  border: 1px solid #fff;
+	  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+	  margin-left: 20rpx;
+}
+.status_bar {
+	      height: 25px;
+	      width: 100%;
+}
+.buttomButton{
+	width:55px;
+}
+.bottomBox{
+	height: 100px;
+	border: 1px solid red;
+	position: fixed;
+	width: 100%;
+	bottom: 0px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+.clearFloat{
+	clear:both;
+}
 .content {
 	text-align: center;
 	height: 400rpx;

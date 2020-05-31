@@ -1,22 +1,34 @@
 <template>
+	
 	<view class="content">
-		<view>
-			<view class="page-section swiper">
-				<view class="page-section-spacing">
-					<swiper class="swiper" autoplay="true" interval="3000" duration="100">
-						<swiper-item>
-							<image src="../../../static/img/slideOne.jpg" mode="widthFix" style="width: 100%;" ></image>
-						</swiper-item>
-						<swiper-item>
-							<image src="../../../static/img/slideTwo.jpg" mode="widthFix" style="width: 100%;"></image>
-						</swiper-item>
-						<swiper-item>
-							<image src="../../../static/img/slideThree.jpg" mode="widthFix" style="width: 100%;"></image>
-						</swiper-item>
-					</swiper>
+		<view class="status_bar">
+			<uni-nav-bar :fixed="true" title="极简主义">
+				<view slot="left">
+					<view class="userinfo-avatar" @tap="enterCenter">
+						<open-data  type="userAvatarUrl"></open-data>
+					</view>
 				</view>
-			</view>
+			</uni-nav-bar>
 		</view>
+		
+		<!-- <view class="bottomBox">
+			<view class="buttomButton">
+				 -->
+				<uni-fab
+					:content="buttonArray"
+					:pattern="buttonPattern"
+					horizontal="right"
+					vertical="bottom"
+					direction="vertical"
+					@trigger="clickText"
+					@fabClick="clickButton"
+				></uni-fab>
+			<!-- 	<view class="clearFloat">
+					
+				</view> -->
+	<!-- 		</view>
+			
+		</view> -->
 		<!-- <view v-if="userInfo.name.length==0" @tap="login" class="loginImg">
 			点击登录
 		</view>
@@ -28,19 +40,39 @@
 </template>
 
 <script>
-import { login } from '../../../utils/utils.js'
+import { login } from '@/utils/utils.js';
+import uniFab from '@/components/uni-fab/uni-fab.vue';
+import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 export default {
+	components: {
+		uniFab, uniNavBar
+	},
 	data() {
 		return {
 			userInfo:{
 				name:"",
 				avatarUrl:"",
 			},
+			buttonArray: [{
+						text: '制作',
+						active: false
+					},
+					{
+						text: '客服',
+						active: true
+					}
+			],
 			background: ['color1', 'color2', 'color3'],
 			indicatorDots: true,
 			autoplay: true,
 			interval: 2000,
-			duration: 500
+			duration: 500,
+			buttonPattern:{
+				backgroundColor: "#ffffff",
+				buttonColor: "#4169E1",
+				color: "#696969",
+				selectedColor: "#007AFF"
+			}
 		};
 	},
 	onLoad() {
@@ -48,6 +80,24 @@ export default {
 		this.gotologin();
 	},
 	methods: {
+		enterCenter(){
+			console.log("进入个人中心页面");
+			uni.navigateTo({
+				url:"../../center/center"
+			})
+		},
+		clickButton(){
+			console.log("展开菜单");
+		},
+		clickText(e){
+			console.log("选择制作方式");
+			console.log(e);
+			if(e.index==0){
+				uni.navigateTo({
+					url: "/pages/tabbar/tabbar-2/tabbar-2"
+				})
+			}
+		},
 		getUserInfo(){
 			var self = this;
 			wx.getUserInfo({
@@ -58,7 +108,6 @@ export default {
 						self.userInfo.avatarUrl = res.userInfo.avatarUrl
 					}
 			});
-			
 		},
 		gotologin(){
 			var self = this;
@@ -103,6 +152,37 @@ export default {
 </script>
 
 <style>
+	
+	.userinfo-avatar {  
+	  overflow: hidden;
+	  display: block;
+	  width: 70rpx;
+	  height: 70rpx;
+	  border-radius: 50%;
+	  border: 1px solid #fff;
+	  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+	  margin-left: 20rpx;
+
+	}  
+	.status_bar {
+	      height: var(--status-bar-height);
+	      width: 100%;
+	  }
+.buttomButton{
+	width:55px;
+}
+.bottomBox{
+	height: 100px;
+	border: 1px solid red;
+	position: fixed;
+	width: 100%;
+	bottom: 0px;
+	display: flex;
+	justify-content: center;
+}
+.clearFloat{
+	clear:both;
+}
 .content {
 	text-align: center;
 	height: 400upx;

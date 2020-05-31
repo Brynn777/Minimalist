@@ -7,6 +7,7 @@
 			</view>
 			<view class="forStepBar">
 			</view>
+			<image src="../../../static/img/moduleOne.jpg" mode="aspectFit"></image>
 			<!-- 目录页专用 -->
 			<view v-if="pageType=='catalog'">
 				<view v-for="(item, index) in content.catalog.titles.value" :key="'item'+index">
@@ -58,7 +59,7 @@
 	import uniInput from '@/components/hnfly-input//uni-input.vue';
 	import uniIcons from "components/uni-icons/uni-icons.vue";
 	import sunUiUpimg from '@/components/sunui-upimg/sunui-upimg.vue';
-	import { makeCover, previewPage, newPreview, DATA, movePPT } from '../../../utils/utils.js'
+	import { makeCover, generateOnePage, newPreview, DATA, movePPT } from '../../../utils/utils.js'
 	export default {
 		data() {
 			return {
@@ -187,7 +188,7 @@
 					this.buttonLoading = true;
 					var postData = this.processPostData()
 					var self = this;
-					previewPage(this.pageType, postData).then(res=>{
+					generateOnePage(this.pageType, postData).then(res=>{
 						// 根据返回的数据存储到vuex
 						this.$store.commit('changeItem',{
 							page: 'productInfo',
@@ -246,7 +247,7 @@
 			async geneTransitionPage(resolve) {
 				var postData = this.processPostData()
 				for(let i = 0; i<postData.titles.length; i++){
-					await previewPage('transition',{
+					await generateOnePage('transition',{
 						fileId:postData.fileId,
 						title:postData.titles[i]
 					})

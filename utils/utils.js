@@ -49,7 +49,10 @@ export function newPreview(fileId) {
 		fileId:fileId
 	})
 }
-export function previewPage(addUrl,data) {
+
+// 提交某页数据,生成具体的一页PPT
+// data有该页的数据项.
+export function generateOnePage(addUrl,data) {
 	return $http.post(url[addUrl.toUpperCase()],data)
 	
 }

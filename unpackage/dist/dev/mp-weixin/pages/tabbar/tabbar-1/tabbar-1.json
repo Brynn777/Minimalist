@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-fab": "/components/uni-fab/uni-fab",
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar"
+  }
 }

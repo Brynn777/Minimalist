@@ -2,7 +2,10 @@
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/tabbar/tabbar-1/tabbar-1"
+			"path": "pages/tabbar/tabbar-1/tabbar-1",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		},
 		{
 			"path": "pages/tabbar/tabbar-2/tabbar-2"
@@ -23,34 +26,31 @@
 			"path": "pages/TextInput/previewPPT/previewPPT",
 			"style": {}
 		}
-	],
+        ,{
+            "path" : "pages/center/center",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "极简主义",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
 		"borderStyle": "black",
 		"backgroundColor": "#FFFFFF",
 		"color": "#dbdbdb",
 		"selectedColor": "#515151",
+		"height": "10px",//tabbar height没有生效
 		"list": [{
 				"pagePath": "pages/tabbar/tabbar-1/tabbar-1",
-				"iconPath": "static/img/tabbar/unhome.png",
 				"selectedIconPath": "static/img/tabbar/home.png",
 				"text": "首页"
 			},
-			{
-				"pagePath": "pages/tabbar/tabbar-2/tabbar-2",
-				"iconPath": "static/img/tabbar/undo.png",
-				"selectedIconPath": "static/img/tabbar/do.png",
-				"text": "制作"
-			},
+		
 
 			{
 				"pagePath": "pages/tabbar/tabbar-3/tabbar-3",
-				"iconPath": "static/img/tabbar/unproduct.png",
 				"selectedIconPath": "static/img/tabbar/product.png",
 				"text": "产品"
 			}

@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -163,7 +163,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26); //
+
+
+
+
+
+
+
+
+
+
+
+
+var _utils = __webpack_require__(/*! @/utils/utils.js */ 26); //
 //
 //
 //
@@ -192,8 +204,45 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26); //
 //
 //
 //
-var _default = { data: function data() {return { userInfo: { name: "", avatarUrl: "" }, background: ['color1', 'color2', 'color3'], indicatorDots: true, autoplay: true, interval: 2000, duration: 500 };}, onLoad: function onLoad() {// this.getUserInfo();
-    this.gotologin();}, methods: { getUserInfo: function getUserInfo() {var self = this;wx.getUserInfo({ success: function success(res) {console.log("获取用户信息！！");console.log(res);self.userInfo.name = res.userInfo.nickName;self.userInfo.avatarUrl = res.userInfo.avatarUrl;} });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var uniFab = function uniFab() {return __webpack_require__.e(/*! import() | components/uni-fab/uni-fab */ "components/uni-fab/uni-fab").then(__webpack_require__.bind(null, /*! @/components/uni-fab/uni-fab.vue */ 88));};var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 95));};var _default = { components: { uniFab: uniFab, uniNavBar: uniNavBar }, data: function data() {return { userInfo: { name: "", avatarUrl: "" }, buttonArray: [{ text: '制作', active: false }, { text: '客服', active: true }], background: ['color1', 'color2', 'color3'], indicatorDots: true, autoplay: true, interval: 2000, duration: 500, buttonPattern: { backgroundColor: "#ffffff", buttonColor: "#4169E1", color: "#696969", selectedColor: "#007AFF" } };}, onLoad: function onLoad() {// this.getUserInfo();
+    this.gotologin();}, methods: { enterCenter: function enterCenter() {console.log("进入个人中心页面");uni.navigateTo({
+        url: "../../center/center" });
+
+    },
+    clickButton: function clickButton() {
+      console.log("展开菜单");
+    },
+    clickText: function clickText(e) {
+      console.log("选择制作方式");
+      console.log(e);
+      if (e.index == 0) {
+        uni.navigateTo({
+          url: "/pages/tabbar/tabbar-2/tabbar-2" });
+
+      }
+    },
+    getUserInfo: function getUserInfo() {
+      var self = this;
+      wx.getUserInfo({
+        success: function success(res) {
+          console.log("获取用户信息！！");
+          console.log(res);
+          self.userInfo.name = res.userInfo.nickName;
+          self.userInfo.avatarUrl = res.userInfo.avatarUrl;
+        } });
+
     },
     gotologin: function gotologin() {
       var self = this;
@@ -233,6 +282,7 @@ var _default = { data: function data() {return { userInfo: { name: "", avatarUrl
         } });
 
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
