@@ -160,14 +160,7 @@ __webpack_require__.r(__webpack_exports__);
 
 {
   data: function data() {
-    return {
-
-      pattern: {
-        color: '#7A7E83',
-        backgroundColor: '#fff',
-        selectedColor: '#72b2ff',
-        buttonColor: '#72b2ff' } };
-
+    return {};
 
   },
   components: {
@@ -178,13 +171,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     routerLink: function routerLink() {
-      console.log("123");
       uni.navigateTo({
         url: '/pages/TextInput/selectPage/selectPage' });
 
-    },
-    test: function test(event) {
-      console.log(event);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

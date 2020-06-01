@@ -178,7 +178,7 @@ var uniSteps = function uniSteps() {return __webpack_require__.e(/*! import() | 
 
 
       wx.downloadFile({
-        url: 'https://minimalist.net.cn' + self.$store.state.productInfo.filePath.value,
+        url: 'https://minimalist.net.cn' + self.$store.state.productInfo.filePath,
         success: function success(res) {
           console.log(res);
           uni.saveFile({
@@ -204,7 +204,7 @@ var uniSteps = function uniSteps() {return __webpack_require__.e(/*! import() | 
 
         },
         fail: function fail(res) {
-          console.log('https://minimalist.net.cn' + self.$store.state.productInfo.filePath.value);
+          console.log('https://minimalist.net.cn' + self.$store.state.productInfo.filePath);
           console.log(res);
         } });
 
@@ -212,7 +212,7 @@ var uniSteps = function uniSteps() {return __webpack_require__.e(/*! import() | 
 
   onLoad: function onLoad(options) {var _this = this;
     console.log('这里是预览页');
-    (0, _utils.newPreview)(this.$store.state.productInfo.fileId.value).then(function (res) {
+    (0, _utils.newPreview)(this.$store.state.productInfo.fileId).then(function (res) {
       console.log(res);
       _this.picUrl = res.data;
     });

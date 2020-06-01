@@ -159,22 +159,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _utils = __webpack_require__(/*! @/utils/utils.js */ 26); //
 //
 //
@@ -200,24 +184,14 @@ var _utils = __webpack_require__(/*! @/utils/utils.js */ 26); //
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var uniFab = function uniFab() {return __webpack_require__.e(/*! import() | components/uni-fab/uni-fab */ "components/uni-fab/uni-fab").then(__webpack_require__.bind(null, /*! @/components/uni-fab/uni-fab.vue */ 88));};var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 95));};var _default = { components: { uniFab: uniFab, uniNavBar: uniNavBar }, data: function data() {return { userInfo: { name: "", avatarUrl: "" }, buttonArray: [{ text: '制作', active: false }, { text: '客服', active: true }], background: ['color1', 'color2', 'color3'], indicatorDots: true, autoplay: true, interval: 2000, duration: 500, buttonPattern: { backgroundColor: "#ffffff", buttonColor: "#4169E1", color: "#696969", selectedColor: "#007AFF" } };}, onLoad: function onLoad() {// this.getUserInfo();
-    this.gotologin();}, methods: { enterCenter: function enterCenter() {console.log("进入个人中心页面");uni.navigateTo({
+var uniFab = function uniFab() {return __webpack_require__.e(/*! import() | components/uni-fab/uni-fab */ "components/uni-fab/uni-fab").then(__webpack_require__.bind(null, /*! @/components/uni-fab/uni-fab.vue */ 88));};var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 95));};var _default = { components: { uniFab: uniFab, uniNavBar: uniNavBar }, data: function data() {return { buttonArray: [{ text: '制作', active: false }, { text: '客服', active: false }], buttonPattern: { backgroundColor: "#ffffff", buttonColor: "#4169E1", color: "#696969", selectedColor: "#007AFF" } };},
+  onLoad: function onLoad() {
+    this.gotologin();
+  },
+  methods: {
+    enterCenter: function enterCenter() {
+      console.log("进入个人中心页面");
+      uni.navigateTo({
         url: "../../center/center" });
 
     },
@@ -233,54 +207,18 @@ var uniFab = function uniFab() {return __webpack_require__.e(/*! import() | comp
 
       }
     },
-    getUserInfo: function getUserInfo() {
-      var self = this;
-      wx.getUserInfo({
-        success: function success(res) {
-          console.log("获取用户信息！！");
-          console.log(res);
-          self.userInfo.name = res.userInfo.nickName;
-          self.userInfo.avatarUrl = res.userInfo.avatarUrl;
-        } });
-
-    },
     gotologin: function gotologin() {
       var self = this;
+      (0, _utils.login2)().then(function (res) {
+        // console.log("用户成功登录信息");
+        self.$store.commit('changeItem', {
+          page: 'userInfo',
+          key: 'userId',
+          value: res.data.user.userId });
 
-      //调用wx.login获取code
-      wx.login({
-        // callback
-        success: function success(res) {
-          console.log("微信开放接口api");
-          console.log(res);
-          if (res.code) {
-            console.log("开始在用户服务器上登录");
-            self.$store.state.userInfo.code = res.code;
-            console.log(res);
-            //用获取的临时登录凭证code在业务服务器上换取openID
-            // self.$http.post(self.$store.state.url.LOGIN,{code:res.code})
-            (0, _utils.login)({ code: res.code }).then(function (res) {
-              console.log("登录成功");
-              console.log(res);
-              // self.$store.state.userInfo.token = res.data.token;
-              self.$store.commit('changeItem', {
-                page: 'userInfo',
-                key: 'userId',
-                value: res.data.user.userId });
-
-              // self.$store.state.userInfo.userId = res.data.user.userId;
-              // self.$store.state.userInfo.openid = res.data.user.openid;
-              // console.log(self.$store.state.userInfo);
-            }).
-            catch(function (err) {
-              console.log("登录失败");
-              console.log(err);
-            });
-          } else {
-            console.log('微信开放接口失败' + res.errMsg);
-          }
-        } });
-
+      }).catch(function (err) {
+        // console.log("用户登录失败信息")
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

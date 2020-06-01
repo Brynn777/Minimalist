@@ -10,7 +10,7 @@
 			<image src="../../../static/img/moduleOne.jpg" mode="aspectFit"></image>
 			<!-- 目录页专用 -->
 			<view v-if="pageType=='catalog'">
-				<view v-for="(item, index) in content.catalog.titles.value" :key="'item'+index">
+				<view v-for="(item, index) in content.catalog.titles" :key="'item'+index">
 					<view v-if="item!='-'">
 						<view class="inputBox">
 							<view v-if="index==0">
@@ -19,7 +19,7 @@
 							<view v-else>
 								<uni-icons  class="addIcon" type="minus" size="30" @tap="deleteOneMenuItem(index)"></uni-icons>
 							</view>
-							<input :value="content.catalog.titles.value[index]" @input="inputOneMenuItem($event,index)" 
+							<input :value="content.catalog.titles[index]" @input="inputOneMenuItem($event,index)" 
 							:placeholder="index|itemTip(pageType)" class="inputContent" ></input>
 						</view>
 					</view>
@@ -36,13 +36,13 @@
 					<!-- 正文部分 -->
 					<view v-else-if="key=='paragraph'" class="inputBox">
 						<view class="inputTip">{{key | itemTranslate(pageType)}}</view>
-						<textarea :value="content[pageType][key].value" @input="changeContent($event, key)"
+						<textarea :value="content[pageType][key]" @input="changeContent($event, key)"
 						:maxlength="-1" :show-confirm-bar="false" auto-height="true" class="inputContent"/>
 					</view>
 					<!-- 输入框 -->
 					<view v-else class="inputBox">
 						<view class="inputTip">{{key | itemTranslate(pageType)}}</view>
-						<input :value="content[pageType][key].value" @input="changeContent($event, key)"
+						<input :value="content[pageType][key]" @input="changeContent($event, key)"
 							:placeholder="key|itemTip(pageType)" class="inputContent">
 						</input>
 					</view>
@@ -59,7 +59,7 @@
 	import uniInput from '@/components/hnfly-input//uni-input.vue';
 	import uniIcons from "components/uni-icons/uni-icons.vue";
 	import sunUiUpimg from '@/components/sunui-upimg/sunui-upimg.vue';
-	import { makeCover, generateOnePage, newPreview, DATA, movePPT } from '../../../utils/utils.js'
+	import { generateOnePage, newPreview, DATA, movePPT } from '../../../utils/utils.js'
 	export default {
 		data() {
 			return {
@@ -107,7 +107,7 @@
 		methods: {
 			getImageInfo1(e) {
 				console.log('图片返回1：', e)
-				this.content.picWithText.pictureUrls.value = e;
+				this.content.picWithText.pictureUrls = e;
 			},
 			uploadImage() {
 				var self = this;
@@ -148,26 +148,26 @@
 			changeContent(e, key){
 				this.changeInput = true;
 				if(this.pageType=='picWithText'&&key=='pictureUrls'){
-					this.content[this.pageType][key].value.push(e.target.value);
+					this.content[this.pageType][key].push(e.target.value);
 				}
 				else{
-					this.content[this.pageType][key].value = e.target.value;
+					this.content[this.pageType][key] = e.target.value;
 				}
 			},
 			
 			// 目录页添加空白
 			addOneMenuItem(index){
-				this.content.catalog.titles.value.push('');
+				this.content.catalog.titles.push('');
 			},
 			// 目录页填写内容
 			inputOneMenuItem(e,index){
 				this.changeInput = true;
-				this.content.catalog.titles.value[index] = e.target.value;
+				this.content.catalog.titles[index] = e.target.value;
 			},
 			// 目录页删除条目
 			deleteOneMenuItem(index){
 				this.changeInput = true;
-				this.content.catalog.titles.value[index] = '-';
+				this.content.catalog.titles[index] = '-';
 			},
 			
 			// 跳转到预览页
@@ -205,6 +205,8 @@
 							key: 'filePath',
 							value: res.data.filePath
 						});
+						console.log("查看vuex中PPT相关信息");
+						console.log(this.$store.state.productInfo)
 						// 如果是目录页，还要post生成过渡页
 						if(this.pageType=='catalog') {
 							this.geneTransitionPage(resolve);
@@ -212,7 +214,7 @@
 						else {
 							// 如果本次post的是内容页,要调整页面顺序
 							if(this.pageType=='text'||this.pageType=='picWithText') {
-								movePPT(this.$store.state.productInfo.fileId.value,this.$store.state.productInfo.fileNumber.value,parseInt(this.pageIndex)+1).then(res=>{
+								movePPT(this.$store.state.productInfo.fileId,this.$store.state.productInfo.fileNumber,parseInt(this.pageIndex)+1).then(res=>{
 									resolve()
 								})
 							}
@@ -261,12 +263,12 @@
 				// 存储过渡页
 				if(this.pageType == 'catalog') {
 					// 过滤掉无效的目录项
-					let remain = this.content.catalog.titles.value.filter((item)=>{
+					let remain = this.content.catalog.titles.filter((item)=>{
 						if(item!=''&&item!='-'){
 							return item
 						}
 					})
-					this.content.catalog.titles.value = remain;
+					this.content.catalog.titles = remain;
 					// for(let )
 					this.$store.commit('addTransitionPage',remain);
 				}
@@ -283,14 +285,14 @@
 			// 处理post的所有数据，加上用户信息，去掉多余信息
 			processPostData() {
 				var adhereInfo = {
-					userId: this.$store.state.userInfo.userId.value,
-					fileId: this.$store.state.productInfo.fileId.value,
+					userId: this.$store.state.userInfo.userId,
+					fileId: this.$store.state.productInfo.fileId,
 					templateId: 1
 				};
 				var mainInfo = {};
 				// 如果是目录页，要过滤无效数据
 				if(this.pageType == 'catalog') {
-					let remain = this.content.catalog.titles.value.filter((item)=>{
+					let remain = this.content.catalog.titles.filter((item)=>{
 						if(item!=''&&item!='-'){
 							return item
 						}
@@ -300,7 +302,7 @@
 				}
 				else{
 					for(let it in this.content[this.pageType]){
-						this.$set(mainInfo,it,this.content[this.pageType][it].value);
+						this.$set(mainInfo,it,this.content[this.pageType][it]);
 					}
 				}
 				var allInfo = {

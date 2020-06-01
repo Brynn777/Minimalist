@@ -43,7 +43,7 @@
 				});
 				
 				wx.downloadFile({
-					url:'https://minimalist.net.cn'+self.$store.state.productInfo.filePath.value,
+					url:'https://minimalist.net.cn'+self.$store.state.productInfo.filePath,
 					success(res){
 						console.log(res);
 						uni.saveFile({
@@ -69,7 +69,7 @@
 						
 					},
 					fail(res){
-						console.log('https://minimalist.net.cn'+self.$store.state.productInfo.filePath.value);
+						console.log('https://minimalist.net.cn'+self.$store.state.productInfo.filePath);
 						console.log(res);
 					}
 				})
@@ -77,7 +77,7 @@
 		},
 		onLoad(options) {
 			console.log('这里是预览页');
-			newPreview(this.$store.state.productInfo.fileId.value).then(res=>{
+			newPreview(this.$store.state.productInfo.fileId).then(res=>{
 				console.log(res);
 				this.picUrl = res.data;
 			})

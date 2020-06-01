@@ -1,10 +1,10 @@
 <template>
 	<view class="content">
-		
-		<view class="stepBar">
+		<!-- <view class="stepBar">
 		<uni-steps :options="[{title: '选择模板'}, {title: '输入文本'}, {title: '生成导出'}]" :active="0"></uni-steps>	
 		</view>
-		<view class="forStepBar"></view>
+		<view class="forStepBar"></view> -->
+		<!-- 选择模板 -->
 		<view class="modulePic">
 			<image src="../../../static/img/moduleOne.jpg" mode="aspectFit" @tap="routerLink"></image>
 		</view>
@@ -26,13 +26,6 @@
 	export default {
 		data() {
 			return {
-				
-				pattern: {
-					color: '#7A7E83',
-					backgroundColor: '#fff',
-					selectedColor: '#72b2ff',
-					buttonColor: '#72b2ff'
-				},
 			}
 		},
 		components:{
@@ -43,42 +36,21 @@
 		},
 		methods: {
 			routerLink() {
-				console.log("123")
 				uni.navigateTo({
 				  url: '/pages/TextInput/selectPage/selectPage',
 				 })
 			},
-			test(event) {
-				console.log(event)
-			}
 		}
 	}
 </script>
 
 <style>
-	.content {
-		text-align: center;
-		height: 400upx;
-		margin-top: 10upx;
-	}
-	.topText {
-		float: left;
-		line-height: 30px;
-		position:relative;
-		left: 10px
-	}
-	.addIcon {
-		position: absolute;
-		right: 10px
-	}
-.stepBar{
-	position: fixed;
-	width:100%;
-	z-index:2;
-	background:white;
-}
-.forStepBar{
-	height:60rpx;
+.content {
+	height: 400rpx;
+	margin-top: 10rpx;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 .modulePic{
 	margin-bottom: 10rpx;
@@ -90,4 +62,14 @@
 .modulePic > image{
 	height:100px
 }
+.stepBar{
+	position: fixed;
+	width:100%;
+	z-index:2;
+	background:white;
+}
+.forStepBar{
+	height:60rpx;
+}
+
 </style>

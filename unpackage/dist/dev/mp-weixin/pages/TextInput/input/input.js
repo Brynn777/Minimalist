@@ -100,7 +100,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.content.catalog.titles.value, function(item, index) {
+  var l0 = _vm.__map(_vm.content.catalog.titles, function(item, index) {
     var f0 = _vm._f("itemTip")(index, _vm.pageType)
 
     return {
@@ -278,7 +278,7 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _in
   methods: {
     getImageInfo1: function getImageInfo1(e) {
       console.log('图片返回1：', e);
-      this.content.picWithText.pictureUrls.value = e;
+      this.content.picWithText.pictureUrls = e;
     },
     uploadImage: function uploadImage() {
       var self = this;
@@ -319,26 +319,26 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _in
     changeContent: function changeContent(e, key) {
       this.changeInput = true;
       if (this.pageType == 'picWithText' && key == 'pictureUrls') {
-        this.content[this.pageType][key].value.push(e.target.value);
+        this.content[this.pageType][key].push(e.target.value);
       } else
       {
-        this.content[this.pageType][key].value = e.target.value;
+        this.content[this.pageType][key] = e.target.value;
       }
     },
 
     // 目录页添加空白
     addOneMenuItem: function addOneMenuItem(index) {
-      this.content.catalog.titles.value.push('');
+      this.content.catalog.titles.push('');
     },
     // 目录页填写内容
     inputOneMenuItem: function inputOneMenuItem(e, index) {
       this.changeInput = true;
-      this.content.catalog.titles.value[index] = e.target.value;
+      this.content.catalog.titles[index] = e.target.value;
     },
     // 目录页删除条目
     deleteOneMenuItem: function deleteOneMenuItem(index) {
       this.changeInput = true;
-      this.content.catalog.titles.value[index] = '-';
+      this.content.catalog.titles[index] = '-';
     },
 
     // 跳转到预览页
@@ -376,6 +376,8 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _in
             key: 'filePath',
             value: res.data.filePath });
 
+          console.log("查看vuex中PPT相关信息");
+          console.log(_this.$store.state.productInfo);
           // 如果是目录页，还要post生成过渡页
           if (_this.pageType == 'catalog') {
             _this.geneTransitionPage(resolve);
@@ -383,7 +385,7 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _in
           {
             // 如果本次post的是内容页,要调整页面顺序
             if (_this.pageType == 'text' || _this.pageType == 'picWithText') {
-              (0, _utils.movePPT)(_this.$store.state.productInfo.fileId.value, _this.$store.state.productInfo.fileNumber.value, parseInt(_this.pageIndex) + 1).then(function (res) {
+              (0, _utils.movePPT)(_this.$store.state.productInfo.fileId, _this.$store.state.productInfo.fileNumber, parseInt(_this.pageIndex) + 1).then(function (res) {
                 resolve();
               });
             } else
@@ -432,12 +434,12 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _in
       // 存储过渡页
       if (this.pageType == 'catalog') {
         // 过滤掉无效的目录项
-        var remain = this.content.catalog.titles.value.filter(function (item) {
+        var remain = this.content.catalog.titles.filter(function (item) {
           if (item != '' && item != '-') {
             return item;
           }
         });
-        this.content.catalog.titles.value = remain;
+        this.content.catalog.titles = remain;
         // for(let )
         this.$store.commit('addTransitionPage', remain);
       }
@@ -454,14 +456,14 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _in
     // 处理post的所有数据，加上用户信息，去掉多余信息
     processPostData: function processPostData() {
       var adhereInfo = {
-        userId: this.$store.state.userInfo.userId.value,
-        fileId: this.$store.state.productInfo.fileId.value,
+        userId: this.$store.state.userInfo.userId,
+        fileId: this.$store.state.productInfo.fileId,
         templateId: 1 };
 
       var mainInfo = {};
       // 如果是目录页，要过滤无效数据
       if (this.pageType == 'catalog') {
-        var remain = this.content.catalog.titles.value.filter(function (item) {
+        var remain = this.content.catalog.titles.filter(function (item) {
           if (item != '' && item != '-') {
             return item;
           }
@@ -471,7 +473,7 @@ var _utils = __webpack_require__(/*! ../../../utils/utils.js */ 26);function _in
       } else
       {
         for (var it in this.content[this.pageType]) {
-          this.$set(mainInfo, it, this.content[this.pageType][it].value);
+          this.$set(mainInfo, it, this.content[this.pageType][it]);
         }
       }
       var allInfo = _objectSpread({},

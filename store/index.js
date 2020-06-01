@@ -3,47 +3,40 @@ import Vue from 'vue'
 Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
-		// 用户填写的所有数据
+		// 用户填写的所有数据,数据来源于input页面的commit changePPTContent，数据结构来自content.js
+		// {
+		// 	pageType: 'cover',
+		// 	title: '123',
+		// 	subtitle:'456',
+		// 	reporterName:  '',
+		// 	reportTime: '',
+		// }
 		PPT:[
 			{pageType:'cover'},
 			{pageType:'catalog'},
-			// {pageType:'text'},
-			// {pageType:'picWithText'},
 			{pageType:'ending'}
 		],
 		userInfo:{
-			userId: {
-				tip: '用户在业务服务器上唯一标识',
-				value: ''
-			}
+			// 用户在业务服务器上唯一标识',在进入tab1时获取,并commit changeItem
+			userId: ''
 		},
 		productInfo:{
-			fileId: {
-				tip: '本次PPT的唯一标识',
-				value: ''
-			},
-			templateId:{
-				tip: '本次使用的模板id',
-				value: ''
-			},
-			filePath  : {
-				tip: '本次生成的文件路径',
-				value: ''
-			},
-			fileName: {
-				tip: '本次生成的文件名字',
-				value: ''
-			},
-			fileNumber: {
-				tip: '本次生成的文件数量',
-				value: ''
-			},
+			// tip: '本次PPT的唯一标识',
+			fileId:'',
+			// tip: '本次使用的模板id',
+			templateId:'',
+			// tip: '本次生成的文件路径',
+			filePath  : '',
+			// tip: '本次生成的文件名字',
+			fileName:'',
+			// tip: '本次生成的文件数量',
+			fileNumber:'',
 		},
 	},
 	mutations: {
 		// 将单个数据项添加
 		changeItem(state, data) {
-			state[data.page][data.key].value = data.value;
+			state[data.page][data.key] = data.value;
 		},
 		addArray(state) {
 			Vue.set(state.PPT, state.PPT.length, {})
@@ -68,10 +61,7 @@ export default new Vuex.Store({
 			for(let it in data) {
 				state.PPT.splice(2+parseInt(it),0,{
 					pageType:'transition',
-					title: {
-						tip: '标题',
-						value: data[it]
-					},
+					title: data[it]
 				})
 			}
 		}

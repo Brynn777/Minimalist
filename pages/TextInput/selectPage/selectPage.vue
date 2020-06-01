@@ -6,7 +6,6 @@
 		<view class="forStepBar">
 		</view>
 		<view class="pageBox">
-			
 			<view class="pageBlock" v-for="(obj, index) in PPT" :key="index" @click="routerLink(obj.pageType,index)">
 				<view class="pageText">
 					<uni-icons type="smallcircle" size="20" color="	#00BFFF"></uni-icons>

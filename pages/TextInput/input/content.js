@@ -1,63 +1,45 @@
 let Content = {
+	// 封面页
 	cover:{
-		title: {
-			tip:'主标题',
-			value: ''
-		},
-		subtitle: {
-			tip:'副标题',
-			value: ''
-		},
-		reporterName: {
-			tip:'汇报人',
-			value: ''
-		},
-		reportTime: {
-			tip:'时间',
-			value: ''
-		},
+		// tip:'主标题',
+		title: '',
+		// tip:'副标题',
+		subtitle: '',
+		// tip:'汇报人',
+		reporterName:  '',
+		// tip:'时间',
+		reportTime: '',
 	},
-	picWithText:{
-		title:{
-			tip: '标题',
-			value: '',
-		},
-		paragraph: {
-			tip: '详细内容',
-			value:''
-		},
-		pictureUrls: {
-			tip: '图片url',
-			value: []
-		},
-	}, 
+	// 结束页
 	ending: {
-		title: {
-			tip:'结束语',
-			value: ''
-		}
+		// tip:'结束语',
+		title:  '',
 	},
+	// 目录页
 	catalog:{
-		titles:{
-			tip:'分目录',
-			value:['','']
-		}
+		// tip:'分目录',
+		titles:['','']
 	},
+	// 过渡页
 	transition:{
-		title:{
-			tip:'标题',
-			value:''
-		}
+		// tip:'标题',
+		title: '',
 	},
+	// 图文页
+	picWithText:{
+		// tip: '标题',
+		title: '',
+		// tip: '详细内容',
+		paragraph: '',
+		// tip: '图片url',
+		pictureUrls:  '',
+	}, 
+	// 文字页
 	text: {
-		title:{
-			tip:'标题',
-			value:''
-		},
-		paragraph:{
-			tip:'详细内容',
-			value:''
-		}
+		// tip:'标题',
+		title: '',
+		// tip:'详细内容',
+		paragraph: '',
 	}
 }
 export { Content }

@@ -1810,47 +1810,40 @@ var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _i
 _vue.default.use(_vuex.default);var _default =
 new _vuex.default.Store({
   state: {
-    // 用户填写的所有数据
+    // 用户填写的所有数据,数据来源于input页面的commit changePPTContent，数据结构来自content.js
+    // {
+    // 	pageType: 'cover',
+    // 	title: '123',
+    // 	subtitle:'456',
+    // 	reporterName:  '',
+    // 	reportTime: '',
+    // }
     PPT: [
     { pageType: 'cover' },
     { pageType: 'catalog' },
-    // {pageType:'text'},
-    // {pageType:'picWithText'},
     { pageType: 'ending' }],
 
     userInfo: {
-      userId: {
-        tip: '用户在业务服务器上唯一标识',
-        value: '' } },
-
+      // 用户在业务服务器上唯一标识',在进入tab1时获取,并commit changeItem
+      userId: '' },
 
     productInfo: {
-      fileId: {
-        tip: '本次PPT的唯一标识',
-        value: '' },
-
-      templateId: {
-        tip: '本次使用的模板id',
-        value: '' },
-
-      filePath: {
-        tip: '本次生成的文件路径',
-        value: '' },
-
-      fileName: {
-        tip: '本次生成的文件名字',
-        value: '' },
-
-      fileNumber: {
-        tip: '本次生成的文件数量',
-        value: '' } } },
-
+      // tip: '本次PPT的唯一标识',
+      fileId: '',
+      // tip: '本次使用的模板id',
+      templateId: '',
+      // tip: '本次生成的文件路径',
+      filePath: '',
+      // tip: '本次生成的文件名字',
+      fileName: '',
+      // tip: '本次生成的文件数量',
+      fileNumber: '' } },
 
 
   mutations: {
     // 将单个数据项添加
     changeItem: function changeItem(state, data) {
-      state[data.page][data.key].value = data.value;
+      state[data.page][data.key] = data.value;
     },
     addArray: function addArray(state) {
       _vue.default.set(state.PPT, state.PPT.length, {});
@@ -1875,10 +1868,7 @@ new _vuex.default.Store({
       for (var it in data) {
         state.PPT.splice(2 + parseInt(it), 0, {
           pageType: 'transition',
-          title: {
-            tip: '标题',
-            value: data[it] } });
-
+          title: data[it] });
 
       }
     } } });exports.default = _default;
@@ -9595,7 +9585,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.movePPT = movePPT;exports.login = login;exports.makeCover = makeCover;exports.newPreview = newPreview;exports.generateOnePage = generateOnePage;exports.DATA = void 0;var _requestConfig = _interopRequireDefault(__webpack_require__(/*! ../js_sdk/zhouWei-request/requestConfig */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.movePPT = movePPT;exports.login = login;exports.newPreview = newPreview;exports.generateOnePage = generateOnePage;exports.login2 = login2;exports.DATA = void 0;var _requestConfig = _interopRequireDefault(__webpack_require__(/*! ../js_sdk/zhouWei-request/requestConfig */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 var baseUrl = 'https://minimalist.net.cn/';
 var url = {
   LOGIN: baseUrl + 'minimalist/login/wx',
@@ -9630,17 +9620,17 @@ function movePPT(id, from, to) {
 
 }
 function login(code) {
-  return _requestConfig.default.post(url.LOGIN, code).then(function (res) {
-    if (res.data && res.data.token) ;
-    setLocalData('token', res.data.token);
-    return res;
+  return _requestConfig.default.post(url.LOGIN, code).
+  then(function (res) {
+    if (res.data && res.data.token)
+    return res;else
+
+    throw res;
   }).catch(function (err) {
     throw err;
   });
 }
-function makeCover(data) {
-  return _requestConfig.default.post(url.COVER, data);
-}
+
 function newPreview(fileId) {
   return _requestConfig.default.get(url.NEWPREVIEW, {
     fileId: fileId });
@@ -9650,8 +9640,39 @@ function newPreview(fileId) {
 // 提交某页数据,生成具体的一页PPT
 // data有该页的数据项.
 function generateOnePage(addUrl, data) {
+  console.log("查看用于本页PPT的所有数据");
+  console.log(data);
   return _requestConfig.default.post(url[addUrl.toUpperCase()], data);
+}
 
+function login2() {
+  var self = this;
+  return new Promise(function (resolve, reject) {
+    wx.login({
+      success: function success(res) {
+        // console.log("网络正常开始登录")
+        // console.log(res);
+        if (res.code) {
+          // console.log("获取临时登录凭证")
+          // console.log(res)
+          //用获取的临时登录凭证code在业务服务器上换取openID
+          login({ code: res.code }).then(function (res) {
+            console.log("登录成功!获取用户ID");
+            console.log(res);
+            setLocalData('token', res.data.token);
+            resolve(res);
+          }).catch(function (err) {
+            console.log("登录失败");
+            console.log(err);
+            reject(err);
+          });
+        } else {
+          console.log('微信开放接口失败' + res.errMsg);
+          reject(res);
+        }
+      } });
+
+  });
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
@@ -11399,64 +11420,47 @@ if (hadRuntime) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.Content = void 0;var Content = {
+  // 封面页
   cover: {
-    title: {
-      tip: '主标题',
-      value: '' },
+    // tip:'主标题',
+    title: '',
+    // tip:'副标题',
+    subtitle: '',
+    // tip:'汇报人',
+    reporterName: '',
+    // tip:'时间',
+    reportTime: '' },
 
-    subtitle: {
-      tip: '副标题',
-      value: '' },
-
-    reporterName: {
-      tip: '汇报人',
-      value: '' },
-
-    reportTime: {
-      tip: '时间',
-      value: '' } },
-
-
-  picWithText: {
-    title: {
-      tip: '标题',
-      value: '' },
-
-    paragraph: {
-      tip: '详细内容',
-      value: '' },
-
-    pictureUrls: {
-      tip: '图片url',
-      value: [] } },
-
-
+  // 结束页
   ending: {
-    title: {
-      tip: '结束语',
-      value: '' } },
+    // tip:'结束语',
+    title: '' },
 
-
+  // 目录页
   catalog: {
-    titles: {
-      tip: '分目录',
-      value: ['', ''] } },
+    // tip:'分目录',
+    titles: ['', ''] },
 
-
+  // 过渡页
   transition: {
-    title: {
-      tip: '标题',
-      value: '' } },
+    // tip:'标题',
+    title: '' },
 
+  // 图文页
+  picWithText: {
+    // tip: '标题',
+    title: '',
+    // tip: '详细内容',
+    paragraph: '',
+    // tip: '图片url',
+    pictureUrls: '' },
 
+  // 文字页
   text: {
-    title: {
-      tip: '标题',
-      value: '' },
-
-    paragraph: {
-      tip: '详细内容',
-      value: '' } } };exports.Content = Content;
+    // tip:'标题',
+    title: '',
+    // tip:'详细内容',
+    paragraph: '' } };exports.Content = Content;
 
 /***/ }),
 

@@ -157,6 +157,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 {
   components: { uniList: uniList, uniListItem: uniListItem, uniIcons: uniIcons },
   data: function data() {
@@ -190,24 +192,24 @@ __webpack_require__.r(__webpack_exports__);
     this.clearStorage();
   },
   methods: {
+    // 清理本地缓存文件
     clearStorage: function clearStorage() {
       uni.getSavedFileList({
-
         success: function success(res) {
-          console.log("本地文件");
+          console.log("清理本地缓存");
           console.log(res);
-
-          if (res.fileList.length > 0) {
+          res.fileList.forEach(function (item) {
             uni.removeSavedFile({
-              filePath: res.fileList[0].filePath,
+              filePath: item.filePath,
               complete: function complete(res) {
                 console.log(res);
               } });
 
-          }
+          });
         } });
 
     },
+    // 测试点击服务列表
     routerLink: function routerLink(e) {
       console.log(e);
     } } };exports.default = _default;

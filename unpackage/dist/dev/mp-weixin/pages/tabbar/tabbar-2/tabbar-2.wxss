@@ -1,27 +1,15 @@
 
 .content {
-		text-align: center;
-		height: 400rpx;
-		margin-top: 10rpx;
-}
-.topText {
-		float: left;
-		line-height: 30px;
-		position:relative;
-		left: 10px
-}
-.addIcon {
-		position: absolute;
-		right: 10px
-}
-.stepBar{
-	position: fixed;
-	width:100%;
-	z-index:2;
-	background:white;
-}
-.forStepBar{
-	height:60rpx;
+	height: 400rpx;
+	margin-top: 10rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 .modulePic{
 	margin-bottom: 10rpx;
@@ -32,4 +20,14 @@
 .modulePic > image{
 	height:100px
 }
+.stepBar{
+	position: fixed;
+	width:100%;
+	z-index:2;
+	background:white;
+}
+.forStepBar{
+	height:60rpx;
+}
+
 
